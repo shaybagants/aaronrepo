@@ -7,6 +7,14 @@
   <version>1.3-SNAPSHOT</version>
   <name>aaronapp</name>
   <url>http://maven.apache.org</url>
+    <properties>
+
+<artifactory.default.properties>;am.groupId=${project.groupId};am.artifactId=${project.artifactId};am.version=${project.version}</artifactory.default.properties>
+<artifactory.snapshot.properties>${artifactory.default.properties}</artifactory.snapshot.properties>
+<artifactory.release.properties>${artifactory.default.properties}</artifactory.release.properties>
+<artifactory.release.repo.name>libs-release-local</artifactory.release.repo.name>
+<artifactory.snapshots.repo.name>libs-snapshot-local</artifactory.snapshots.repo.name>
+    </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -19,5 +27,26 @@
           <artifactId>gson</artifactId>
           <version>2.2</version>
       </dependency>
+      <dependency>
+    <groupId>org.jfrog.test</groupId>
+    <artifactId>multi1</artifactId>
+    <version>5.3-SNAPSHOT</version>
+</dependency>
+
   </dependencies>
+
+<distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>Agile Markets Releases</name>
+        <url>http://localhost:8081/artifactory/${artifactory.releases.repo.name}${artifactory.release.properties}</url>
+    </repository>
+    <snapshotRepository>
+        <id>central</id>
+        <name>Agile Markets Snapshots</name>
+        <url>http://localhost:8081/artifactory/${artifactory.snapshots.repo.name}${artifactory.snapshot.properties}</url>
+    </snapshotRepository>
+</distributionManagement>
+
+
 </project>
